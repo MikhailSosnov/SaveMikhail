@@ -1,0 +1,66 @@
+C:\Anaconda\python.exe C:\Python_OOP\Weather.py 
+Введи Город/страну: Москва
+Traceback (most recent call last):
+  File "C:\Anaconda\lib\site-packages\urllib3\connection.py", line 159, in _new_conn
+    (self._dns_host, self.port), self.timeout, **extra_kw)
+  File "C:\Anaconda\lib\site-packages\urllib3\util\connection.py", line 80, in create_connection
+    raise err
+  File "C:\Anaconda\lib\site-packages\urllib3\util\connection.py", line 70, in create_connection
+    sock.connect(sa)
+socket.timeout: timed out
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Anaconda\lib\site-packages\urllib3\connectionpool.py", line 600, in urlopen
+    chunked=chunked)
+  File "C:\Anaconda\lib\site-packages\urllib3\connectionpool.py", line 343, in _make_request
+    self._validate_conn(conn)
+  File "C:\Anaconda\lib\site-packages\urllib3\connectionpool.py", line 839, in _validate_conn
+    conn.connect()
+  File "C:\Anaconda\lib\site-packages\urllib3\connection.py", line 301, in connect
+    conn = self._new_conn()
+  File "C:\Anaconda\lib\site-packages\urllib3\connection.py", line 164, in _new_conn
+    (self.host, self.timeout))
+urllib3.exceptions.ConnectTimeoutError: (<urllib3.connection.VerifiedHTTPSConnection object at 0x00000000049254E0>, 'Connection to api.openweathermap.org timed out. (connect timeout=5)')
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Anaconda\lib\site-packages\requests\adapters.py", line 449, in send
+    timeout=timeout
+  File "C:\Anaconda\lib\site-packages\urllib3\connectionpool.py", line 638, in urlopen
+    _stacktrace=sys.exc_info()[2])
+  File "C:\Anaconda\lib\site-packages\urllib3\util\retry.py", line 398, in increment
+    raise MaxRetryError(_pool, url, error or ResponseError(cause))
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='api.openweathermap.org', port=443): Max retries exceeded with url: /data/2.5/weather?APPID=api-key&lang=ru&q=Tokyo%2CJP (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x00000000049254E0>, 'Connection to api.openweathermap.org timed out. (connect timeout=5)'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Anaconda\lib\site-packages\pyowm\commons\http_client.py", line 151, in get_json
+    verify=self.config['connection']['verify_ssl_certs'])
+  File "C:\Anaconda\lib\site-packages\requests\api.py", line 75, in get
+    return request('get', url, params=params, **kwargs)
+  File "C:\Anaconda\lib\site-packages\requests\api.py", line 60, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "C:\Anaconda\lib\site-packages\requests\sessions.py", line 533, in request
+    resp = self.send(prep, **send_kwargs)
+  File "C:\Anaconda\lib\site-packages\requests\sessions.py", line 646, in send
+    r = adapter.send(request, **kwargs)
+  File "C:\Anaconda\lib\site-packages\requests\adapters.py", line 504, in send
+    raise ConnectTimeout(e, request=request)
+requests.exceptions.ConnectTimeout: HTTPSConnectionPool(host='api.openweathermap.org', port=443): Max retries exceeded with url: /data/2.5/weather?APPID=api-key&lang=ru&q=Tokyo%2CJP (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x00000000049254E0>, 'Connection to api.openweathermap.org timed out. (connect timeout=5)'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Python_OOP\Weather.py", line 15, in <module>
+    observation = mgr.weather_at_place('Tokyo,JP')
+  File "C:\Anaconda\lib\site-packages\pyowm\weatherapi25\weather_manager.py", line 53, in weather_at_place
+    _, json_data = self.http_client.get_json(OBSERVATION_URI, params=params)
+  File "C:\Anaconda\lib\site-packages\pyowm\commons\http_client.py", line 155, in get_json
+    raise exceptions.InvalidSSLCertificateError(str(e))
+pyowm.commons.exceptions.InvalidSSLCertificateError: HTTPSConnectionPool(host='api.openweathermap.org', port=443): Max retries exceeded with url: /data/2.5/weather?APPID=api-key&lang=ru&q=Tokyo%2CJP (Caused by ConnectTimeoutError(<urllib3.connection.VerifiedHTTPSConnection object at 0x00000000049254E0>, 'Connection to api.openweathermap.org timed out. (connect timeout=5)'))
+
+Process finished with exit code 1

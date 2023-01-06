@@ -1,0 +1,3 @@
+from pyowm.owm import OWM
+owm = OWM('your-api-key')
+reg = owm.city_id_registry()
